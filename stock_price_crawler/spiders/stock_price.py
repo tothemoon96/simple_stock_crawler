@@ -41,11 +41,14 @@ class StockPriceSpider(scrapy.Spider):
         page_number = 1
         while page_number <= number_of_total_page:
             # 产生对网页数据的请求
-            yield scrapy.Request('http://q.10jqka.com.cn/'
-                                 'interface/stock/thshy/'
-                                 'zdf/desc/{0}/quote/quote'
-                                 .format(page_number),
-                                 callback=self.parse_stock_data)
+            yield scrapy.Request(
+                (
+                     'http://q.10jqka.com.cn/'
+                     'interface/stock/thshy/'
+                     'zdf/desc/{0}/quote/quote'
+                ).format(page_number),
+                callback=self.parse_stock_data
+            )
             page_number = page_number+1
 
     def parse_stock_data(self, response):
@@ -59,7 +62,12 @@ class StockPriceSpider(scrapy.Spider):
             loader = ItemLoader(item=StockPriceCrawlerItem())
             loader.add_value('stock_market', element['platename'])
             # 根据json的信息，拼接出行业描述网页的地址
-            loader.add_value('stock_market_link', '{0}/{1}'
-                             .format('http://q.10jqka.com.cn/stock/thshy',
-                                     element['hycode']))
+            loader.add_value(
+                (
+                    'stock_market_link', '{0}/{1}'
+                ).format(
+                    'http://q.10jqka.com.cn/stock/thshy',
+                    element['hycode']
+                )
+            )
             yield loader.load_item()
