@@ -3,6 +3,7 @@ import scrapy
 import json
 import scrapy.selector
 from scrapy.loader import ItemLoader
+from scrapy.loader.processors import TakeFirst
 
 from stock_price_crawler.items import StockPriceCrawlerItem
 
@@ -63,9 +64,8 @@ class StockPriceSpider(scrapy.Spider):
             loader.add_value('stock_market', element['platename'])
             # 根据json的信息，拼接出行业描述网页的地址
             loader.add_value(
-                (
-                    'stock_market_link', '{0}/{1}'
-                ).format(
+                'stock_market_link',
+                '{0}/{1}'.format(
                     'http://q.10jqka.com.cn/stock/thshy',
                     element['hycode']
                 )
