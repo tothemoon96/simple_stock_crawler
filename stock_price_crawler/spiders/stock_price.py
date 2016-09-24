@@ -2,8 +2,8 @@
 import scrapy
 import json
 import scrapy.selector
+import logging
 from scrapy.loader import ItemLoader
-from scrapy.loader.processors import TakeFirst
 
 from stock_price_crawler.items import StockPriceCrawlerItem
 
@@ -58,16 +58,31 @@ class StockPriceSpider(scrapy.Spider):
         :param response: HtmlResponse，可以提取出Response的body
         :return: 产生item
         '''
-        data_set = json.loads(response.text)
-        for element in data_set['data']:
-            loader = ItemLoader(item=StockPriceCrawlerItem())
-            loader.add_value('stock_market', element['platename'])
-            # 根据json的信息，拼接出行业描述网页的地址
-            loader.add_value(
-                'stock_market_link',
-                '{0}/{1}'.format(
-                    'http://q.10jqka.com.cn/stock/thshy',
-                    element['hycode']
-                )
+        try :
+            data_set = json.loads(response.text)
+        except ValueError:
+            logging.error('No valid data is returned')
+            yield None
+
+        try:
+            datum=data_set['data']
+        except KeyError:
+            logging.error('No data field in JSON')
+            yield None
+
+        for element in datum:
+            yield self.generate_data_item(element)
+
+
+    def generate_data_item(self,data):
+        loader = ItemLoader(item=StockPriceCrawlerItem())
+        loader.add_value('stock_market', data['platename'])
+        # 拼接出行业描述网页的地址
+        loader.add_value(
+            'stock_market_link',
+            '{0}/{1}'.format(
+                'http://q.10jqka.com.cn/stock/thshy',
+                data['hycode']
             )
-            yield loader.load_item()
+        )
+        return loader.load_item()
