@@ -42,7 +42,7 @@ def convert(data):
 def test_generate_data_item():
     '''
     测试获取的包含行业数据的json的解析是否正确，没测试json里不包含想要的数据的情况
-    :return:无
+    :return:None
     '''
     #构造仿冒的包含了item所需要的数据的数据源map
     fake_data={
@@ -84,11 +84,11 @@ def test_generate_data_item():
             assert_equals(value,item[key])
 
 @mock.patch.object(StockPriceSpider,'generate_data_item')
-def test_parse_stock_data(mock_gen):
+def test_parse_stock_data(mock_generate_data_item):
     '''
     测试根据解析json生成的item项的数目正确与否，没有测试url是否正确
     :param mock_gen: 仿冒的generate_data_item方法，返回值为None
-    :return: 无
+    :return: None
     '''
     # 假装启动了爬虫
     spider=StockPriceSpider()
@@ -102,6 +102,7 @@ def test_parse_stock_data(mock_gen):
         try:
             results.next()
         except StopIteration:
+            #测试数据项的数目是否正确
             assert False
 
     #假装返回了一个从json_response_testcase_none.json中读取内容的response
@@ -109,4 +110,32 @@ def test_parse_stock_data(mock_gen):
 
     # 获取parse_stock_data读入response后生成的生成器
     results = spider.parse_stock_data(fake_response)
+    #测试是否能够正确识别空的JSON
     assert results.next() is None
+
+@mock.patch.object(StockPriceSpider,'parse_stock_data')
+def test_parse(mock_parse_stock_data):
+    '''
+    测试获取数据页面的url和数据页面的数目是否正确，没有测试如果解析的html为空的情况
+    :param mock_parse_stock_data: 仿冒的parse_stock_data方法，返回值为None
+    :return: None
+    '''
+    # 假装启动了爬虫
+    spider = StockPriceSpider()
+    # 假装返回了一个从page_number_testcase.html中读取内容的response
+    fake_response = fake_response_from_file('.\\stock_price_crawler\\test\\page_number_testcase.html')
+    # 获取parse读入response后生成的生成器
+    results = spider.parse(fake_response)
+    # 应该获得2个item
+    for index in xrange(1,3):
+        try:
+            result=results.next()
+            #测试返回的url的地址是否正确
+            assert result.url==(
+                                    'http://q.10jqka.com.cn/' \
+                                    'interface/stock/thshy/' \
+                                    'zdf/desc/{0}/quote/quote'
+                                ).format(index)
+        except StopIteration:
+            #测试返回的url的数目是否正确
+            assert False

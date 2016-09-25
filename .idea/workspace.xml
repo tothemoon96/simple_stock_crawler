@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7457946c-32e0-4a81-a14c-3a8d5b34ee5d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/stock_price_crawler/test/json_response_testcase" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stock_price_crawler/spiders/stock_price.py" afterPath="$PROJECT_DIR$/stock_price_crawler/spiders/stock_price.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stock_price_crawler/test/test_stock_price.py" afterPath="$PROJECT_DIR$/stock_price_crawler/test/test_stock_price.py" />
@@ -34,8 +33,8 @@
       <file leaf-file-name="stock_price.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stock_price_crawler/spiders/stock_price.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="64" column="22" selection-start-line="64" selection-start-column="22" selection-end-line="64" selection-end-column="22" />
+            <state relative-caret-position="149">
+              <caret line="54" column="24" selection-start-line="54" selection-start-column="8" selection-end-line="54" selection-end-column="24" />
               <folding>
                 <element signature="e#24#37#0" expanded="true" />
               </folding>
@@ -46,21 +45,11 @@
       <file leaf-file-name="test_stock_price.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/stock_price_crawler/test/test_stock_price.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="599">
-              <caret line="108" column="0" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+            <state relative-caret-position="509">
+              <caret line="140" column="24" selection-start-line="140" selection-start-column="24" selection-end-line="140" selection-end-column="24" />
               <folding>
                 <element signature="e#24#42#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="count_json_row.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/stock_price_crawler/test/count_json_row.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -773,14 +762,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/stock_price_crawler/items.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="17" column="21" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/stock_price_crawler/test/json_response_testcase.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -797,10 +778,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/stock_price_crawler/items.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="17" column="21" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/stock_price_crawler/spiders/stock_price.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="64" column="22" selection-start-line="64" selection-start-column="22" selection-end-line="64" selection-end-column="22" />
+        <state relative-caret-position="149">
+          <caret line="54" column="24" selection-start-line="54" selection-start-column="8" selection-end-line="54" selection-end-column="24" />
           <folding>
             <element signature="e#24#37#0" expanded="true" />
           </folding>
@@ -809,8 +798,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/stock_price_crawler/test/test_stock_price.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="599">
-          <caret line="108" column="0" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+        <state relative-caret-position="509">
+          <caret line="140" column="24" selection-start-line="140" selection-start-column="24" selection-end-line="140" selection-end-column="24" />
           <folding>
             <element signature="e#24#42#0" expanded="true" />
           </folding>
