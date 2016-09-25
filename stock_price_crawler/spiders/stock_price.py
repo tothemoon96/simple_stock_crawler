@@ -2,6 +2,9 @@
 import scrapy
 import json
 import scrapy.selector
+import logging
+from scrapy.loader import ItemLoader
+
 from stock_price_crawler.items import StockPriceCrawlerItem
 
 
@@ -37,17 +40,17 @@ class StockPriceSpider(scrapy.Spider):
                                    .split(u'/')[-1])
         # 构造填充网页的数据的地址
         page_number = 1
-        custom_urls = []
         while page_number <= number_of_total_page:
-            custom_urls.append('http://q.10jqka.com.cn/'
-                               'interface/stock/thshy/'
-                               'zdf/desc/%d/quote/quote'
-                               % page_number)
-            page_number = page_number+1
-        for stock_data in custom_urls:
             # 产生对网页数据的请求
-            yield scrapy.Request(stock_data,
-                                 callback=self.parse_stock_data)
+            yield scrapy.Request(
+                (
+                     'http://q.10jqka.com.cn/'
+                     'interface/stock/thshy/'
+                     'zdf/desc/{0}/quote/quote'
+                ).format(page_number),
+                callback=self.parse_stock_data
+            )
+            page_number = page_number+1
 
     def parse_stock_data(self, response):
         '''
@@ -55,14 +58,30 @@ class StockPriceSpider(scrapy.Spider):
         :param response: HtmlResponse，可以提取出Response的body
         :return: 产生item
         '''
-        data_set = json.loads(response.text)
-        for element in data_set['data']:
-            item = StockPriceCrawlerItem()
-            item['stock_market'] = element['platename']
-            # 根据json的信息，拼接出行业描述网页的地址
-            item['stock_market_link'] = '%s/%s' \
-                                        % ('http://q.10jqka.com.cn/'
-                                           'stock/thshy',
-                                           element['hycode'])
-            # 生成item
-            yield item
+        try:
+            data_set = json.loads(response.text)
+        except ValueError:
+            logging.error('No valid data is returned')
+            yield None
+
+        try:
+            datum = data_set['data']
+        except KeyError:
+            logging.error('No data field in JSON')
+            yield None
+
+        for element in datum:
+            yield self.generate_data_item(element)
+
+    def generate_data_item(self, data):
+        loader = ItemLoader(item=StockPriceCrawlerItem())
+        loader.add_value('stock_market', data['platename'])
+        # 拼接出行业描述网页的地址
+        loader.add_value(
+            'stock_market_link',
+            '{0}/{1}'.format(
+                'http://q.10jqka.com.cn/stock/thshy',
+                data['hycode']
+            )
+        )
+        return loader.load_item()
