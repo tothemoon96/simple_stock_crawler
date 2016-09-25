@@ -58,14 +58,14 @@ class StockPriceSpider(scrapy.Spider):
         :param response: HtmlResponse，可以提取出Response的body
         :return: 产生item
         '''
-        try :
+        try:
             data_set = json.loads(response.text)
         except ValueError:
             logging.error('No valid data is returned')
             yield None
 
         try:
-            datum=data_set['data']
+            datum = data_set['data']
         except KeyError:
             logging.error('No data field in JSON')
             yield None
@@ -73,8 +73,7 @@ class StockPriceSpider(scrapy.Spider):
         for element in datum:
             yield self.generate_data_item(element)
 
-
-    def generate_data_item(self,data):
+    def generate_data_item(self, data):
         loader = ItemLoader(item=StockPriceCrawlerItem())
         loader.add_value('stock_market', data['platename'])
         # 拼接出行业描述网页的地址

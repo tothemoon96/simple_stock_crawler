@@ -2,10 +2,12 @@
 import collections
 import mock
 from nose.tools import assert_equals
-from scrapy.http import Request,TextResponse
+from scrapy.http import Request, TextResponse
+
 from stock_price_crawler.spiders.stock_price import StockPriceSpider
 
-def fake_response_from_file(file_name,url=None):
+
+def fake_response_from_file(file_name, url=None):
     '''
     创建一个Scrapy伪造的HTTP response
     文件从测试目录中读取
@@ -13,16 +15,22 @@ def fake_response_from_file(file_name,url=None):
     :param url:产生request的url
     :return:构造的fake_response
     '''
-    #初始化response的一些要传入的参数url,response
+    # 初始化response的一些要传入的参数url,response
     if url is None:
         url = 'http://www.example.com'
     request = Request(url=url)
-    response=None
+    response = None
 
-    #构造fake_response的body，从而构造出一个fake_response
-    with open(file_name,'rb') as file:
-        response=TextResponse(url=url,request=request,body=file.read(),encoding='utf-8')
+    # 构造fake_response的body，从而构造出一个fake_response
+    with open(file_name, 'rb') as file:
+        response = TextResponse(
+                                    url=url,
+                                    request=request,
+                                    body=file.read(),
+                                    encoding='utf-8'
+                                )
     return response
+
 
 def convert(data):
     '''
@@ -39,13 +47,14 @@ def convert(data):
     else:
         return data
 
+
 def test_generate_data_item():
     '''
     测试获取的包含行业数据的json的解析是否正确，没测试json里不包含想要的数据的情况
     :return:None
     '''
-    #构造仿冒的包含了item所需要的数据的数据源map
-    fake_data={
+    # 构造仿冒的包含了item所需要的数据的数据源map
+    fake_data = {
         "platename": u"非汽车交运",
         "platecode": "881127",
         "num": "16",
@@ -69,21 +78,23 @@ def test_generate_data_item():
         "jlr": "-0.02",
         "rtime": "2016-09-24 10:35:51"
     }
-    #假装启动了爬虫
-    spider=StockPriceSpider()
-    #测试爬虫里数据生成的方法
-    item=spider.generate_data_item(fake_data)
-    #校验item的键值
-    for key,value in fake_data.iteritems():
-        if key in ['platename','hycode']:
+    # 假装启动了爬虫
+    spider = StockPriceSpider()
+    # 测试爬虫里数据生成的方法
+    item = spider.generate_data_item(fake_data)
+    # 校验item的键值
+    for key, value in fake_data.iteritems():
+        if key in ['platename', 'hycode']:
             if 'platename' in key:
-                key='stock_market'
+                key = 'stock_market'
             elif 'hycode' in key:
-                key='stock_market_link'
-                value='{0}/{1}'.format('http://q.10jqka.com.cn/stock/thshy',value)
-            assert_equals(value,item[key])
+                key = 'stock_market_link'
+                value = '{0}/{1}'\
+                        .format('http://q.10jqka.com.cn/stock/thshy', value)
+            assert_equals(value, item[key])
 
-@mock.patch.object(StockPriceSpider,'generate_data_item')
+
+@mock.patch.object(StockPriceSpider, 'generate_data_item')
 def test_parse_stock_data(mock_generate_data_item):
     '''
     测试根据解析json生成的item项的数目正确与否，没有测试url是否正确
@@ -91,29 +102,38 @@ def test_parse_stock_data(mock_generate_data_item):
     :return: None
     '''
     # 假装启动了爬虫
-    spider=StockPriceSpider()
+    spider = StockPriceSpider()
 
     # 假装返回了一个从json_response_testcase.json中读取内容的response
-    fake_response = fake_response_from_file('.\\stock_price_crawler\\test\\json_response_testcase.json')
+    fake_response = fake_response_from_file(
+        '.\\stock_price_crawler\\'
+        'test\\'
+        'json_response_testcase.json'
+    )
     # 获取parse_stock_data读入response后生成的生成器
     results = spider.parse_stock_data(fake_response)
-    #应该获得50个item
+    # 应该获得50个item
     for index in xrange(50):
         try:
             results.next()
         except StopIteration:
-            #测试数据项的数目是否正确
+            # 测试数据项的数目是否正确
             assert False
 
-    #假装返回了一个从json_response_testcase_none.json中读取内容的response
-    fake_response = fake_response_from_file('.\\stock_price_crawler\\test\\json_response_testcase_none.json')
+    # 假装返回了一个从json_response_testcase_none.json中读取内容的response
+    fake_response = fake_response_from_file(
+        '.\\stock_price_crawler\\'
+        'test\\'
+        'json_response_testcase_none.json'
+    )
 
     # 获取parse_stock_data读入response后生成的生成器
     results = spider.parse_stock_data(fake_response)
-    #测试是否能够正确识别空的JSON
+    # 测试是否能够正确识别空的JSON
     assert results.next() is None
 
-@mock.patch.object(StockPriceSpider,'parse_stock_data')
+
+@mock.patch.object(StockPriceSpider, 'parse_stock_data')
 def test_parse(mock_parse_stock_data):
     '''
     测试获取数据页面的url和数据页面的数目是否正确，没有测试如果解析的html为空的情况
@@ -123,19 +143,23 @@ def test_parse(mock_parse_stock_data):
     # 假装启动了爬虫
     spider = StockPriceSpider()
     # 假装返回了一个从page_number_testcase.html中读取内容的response
-    fake_response = fake_response_from_file('.\\stock_price_crawler\\test\\page_number_testcase.html')
+    fake_response = fake_response_from_file(
+        '.\\stock_price_crawler\\'
+        'test\\'
+        'page_number_testcase.html'
+    )
     # 获取parse读入response后生成的生成器
     results = spider.parse(fake_response)
     # 应该获得2个item
-    for index in xrange(1,3):
+    for index in xrange(1, 3):
         try:
-            result=results.next()
-            #测试返回的url的地址是否正确
-            assert result.url==(
-                                    'http://q.10jqka.com.cn/' \
-                                    'interface/stock/thshy/' \
-                                    'zdf/desc/{0}/quote/quote'
-                                ).format(index)
+            result = results.next()
+            # 测试返回的url的地址是否正确
+            assert result.url == (
+                'http://q.10jqka.com.cn/'
+                'interface/stock/thshy/'
+                'zdf/desc/{0}/quote/quote'
+            ).format(index)
         except StopIteration:
-            #测试返回的url的数目是否正确
+            # 测试返回的url的数目是否正确
             assert False
