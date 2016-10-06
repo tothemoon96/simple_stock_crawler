@@ -135,7 +135,7 @@ def test_parse():
     for index in xrange(1, 3):
         try:
             result = results.next()
-            assert isinstance(result,Request)
+            assert isinstance(result, Request)
         except StopIteration:
             # 测试返回的url的数目是否正确
             assert False

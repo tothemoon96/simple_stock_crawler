@@ -39,7 +39,7 @@ class StockPriceSpider(scrapy.Spider):
         try:
             number_of_total_page = int(number_of_total_page_ustr_list[0]
                                        .split(u'/')[-1])
-            if number_of_total_page<1:
+            if number_of_total_page < 1:
                 # number_of_total_page的值不合理
                 yield None
         except IndexError:
