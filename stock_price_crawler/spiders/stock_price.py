@@ -32,21 +32,29 @@ class StockPriceSpider(scrapy.Spider):
         :return: Request，爬取填充这个动态网页的数据，得到Response后，调用self.parse_stock_data()
         '''
         # 提取页码
-        number_of_total_page_ustr_list = response\
-            .css('.page_info')\
-            .xpath('./text()')\
+        number_of_total_page_ustr_list = response \
+            .css('.page_info') \
+            .xpath('./text()') \
             .extract()
-        number_of_total_page = int(number_of_total_page_ustr_list[0]
-                                   .split(u'/')[-1])
+        try:
+            number_of_total_page = int(number_of_total_page_ustr_list[0]
+                                       .split(u'/')[-1])
+            if number_of_total_page<1:
+                # number_of_total_page的值不合理
+                yield None
+        except IndexError:
+            # 页码提取错误
+            yield None
+
         # 构造填充网页的数据的地址
         page_number = 1
         while page_number <= number_of_total_page:
             # 产生对网页数据的请求
             yield scrapy.Request(
                 (
-                     'http://q.10jqka.com.cn/'
-                     'interface/stock/thshy/'
-                     'zdf/desc/{0}/quote/quote'
+                    'http://q.10jqka.com.cn/'
+                    'interface/stock/thshy/'
+                    'zdf/desc/{0}/quote/quote'
                 ).format(page_number),
                 callback=self.parse_stock_data
             )
@@ -75,13 +83,17 @@ class StockPriceSpider(scrapy.Spider):
 
     def generate_data_item(self, data):
         loader = ItemLoader(item=StockPriceCrawlerItem())
-        loader.add_value('stock_market', data['platename'])
-        # 拼接出行业描述网页的地址
-        loader.add_value(
-            'stock_market_link',
-            '{0}/{1}'.format(
-                'http://q.10jqka.com.cn/stock/thshy',
-                data['hycode']
+        try:
+            loader.add_value('stock_market', data['platename'])
+            # 拼接出行业描述网页的地址
+            loader.add_value(
+                'stock_market_link',
+                '{0}/{1}'.format(
+                    'http://q.10jqka.com.cn/stock/thshy',
+                    data['hycode']
+                )
             )
-        )
+        except KeyError:
+            # data里不包含我们感兴趣的数据
+            return None
         return loader.load_item()
