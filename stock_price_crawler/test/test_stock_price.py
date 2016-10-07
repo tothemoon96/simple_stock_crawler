@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import mock
 import pkg_resources
+from nose.tools import assert_equal
 from scrapy.http import Request, TextResponse
 from stock_price_crawler.spiders.stock_price import StockPriceSpider
 
@@ -56,7 +57,7 @@ def test_generate_data_item():
     fake_item['stock_market_link'] = '{0}/{1}' \
         .format('http://q.10jqka.com.cn/stock/thshy', fake_data['hycode'])
     # 校验item
-    assert cmp(fake_item, item) == 0, u'生成的item不匹配'
+    assert_equal(fake_item, item, u'生成的item不匹配')
 
     # 测试#2
     # 如果数据生成的方法传入的字典不包含相应的键值对，期望返回一个空值
@@ -65,17 +66,6 @@ def test_generate_data_item():
     item = spider.generate_data_item(fake_data_none)
     # 期待返回一个空值
     assert item is None
-
-    # # 校验item的键值
-    # for key, value in fake_data.iteritems():
-    #     if key in ['platename', 'hycode']:
-    #         if 'platename' == key:
-    #             key = 'stock_market'
-    #         elif 'hycode' == key:
-    #             key = 'stock_market_link'
-    #             value = '{0}/{1}' \
-    #                 .format('http://q.10jqka.com.cn/stock/thshy', value)
-    #         assert_equals(value, item[key])
 
 
 @mock.patch.object(StockPriceSpider, 'generate_data_item')
