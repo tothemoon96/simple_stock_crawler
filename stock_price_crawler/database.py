@@ -1,50 +1,69 @@
 # -*- coding: utf-8 -*-
 from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 from stock_price_crawler.config import Config
 
 
-Settings = Config('config.yml').mysql
+class InitDB(object):
+    '''
+    封装engine和session实现单例模式
+    '''
+    Base = declarative_base()
+
+    def __init__(self, config_file_name):
+        self.engine = self.__create_engine_with(config_file_name)
+        self.Session = sessionmaker(bind=self.engine)
+
+    def __new__(cls, *args, **kw):
+        '''
+        \实现单例模式
+        :param args:
+        :param kw:
+        :return:
+        '''
+        if not hasattr(cls, '_instance'):
+            orig = super(InitDB, cls)
+            cls._instance = orig.__new__(cls, *args, **kw)
+        return cls._instance
+
+    def __create_engine_with(self, config_file_name):
+        '''
+        读取外部配置文件创建数据库引擎
+        :param config_file_name:配置文件的名字
+        :return:
+        '''
+        Settings = Config(config_file_name).mysql
+        engine = create_engine(
+            'mysql+mysqlconnector://{0}:{1}@{2}:{3}/{4}'
+                .format(
+                Settings.user,
+                Settings.password,
+                Settings.host,
+                Settings.port,
+                Settings.database
+            )
+        )
+        return engine
 
 
-def create_engine_with(
-        user=Settings.user,
-        password=Settings.password,
-        host=Settings.host,
-        port=Settings.port,
-        database=Settings.database
-):
+class DBSession(object):
+    '''
+        封装Session类为更友好的with模式
     '''
 
-    :param user:用户名
-    :param password:密码
-    :param host:主机名
-    :param port:端口号
-    :param database:数据库名字
-    :return:
-    '''
-    engine = create_engine('mysql+mysqlconnector://{0}:{1}@{2}:{3}/{4}'
-                           .format(user, password, host, port, database))
-    return engine
-
-
-class DBConnection(object):
-    '''
-    将数据库连接的事务处理包装进with...as...语句块
-    '''
-    def __init__(self, engine):
-        self._engine = engine
+    def __init__(self, Session):
+        self.session = Session()
 
     def __enter__(self):
-        self._connection = self._engine.connect()
-        self._trans = self._connection.begin()
-        return self._connection
+        return self.session
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         if exc_type is None:
-            self._trans.commit()
-            self._connection.close()
+            self.session.commit()
+            self.session.close()
             return True
         else:
-            self._trans.rollback()
-            self._connection.close()
+            self.session.rollback()
+            self.session.close()
             return False

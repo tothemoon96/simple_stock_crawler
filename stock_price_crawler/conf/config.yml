@@ -1,7 +1,0 @@
-#冒号之后一定要加空格
-mysql:
- user: root
- password: root
- host: localhost
- port: 3306
- database: demo_stock_price
