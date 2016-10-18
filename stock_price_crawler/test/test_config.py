@@ -56,7 +56,7 @@ def test_Config():
     测试stock_price_crawler.config的Config类
     :return:
     '''
-    config = Config('test_config.yml')
+    config = Config('test_config.yaml')
     assert_equals(
         config.test.test1,
         'test1'
