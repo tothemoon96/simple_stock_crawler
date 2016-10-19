@@ -4,7 +4,6 @@ import json
 import scrapy.selector
 import logging
 from scrapy.loader import ItemLoader
-
 from stock_price_crawler.items import StockPriceCrawlerItem
 
 
@@ -32,23 +31,13 @@ class StockPriceSpider(scrapy.Spider):
         :return: Request，爬取填充这个动态网页的数据，得到Response后，调用self.parse_stock_data()
         '''
         # 提取页码
-        number_of_total_page_ustr_list = response \
-            .css('.page_info') \
-            .xpath('./text()') \
-            .extract()
-        try:
-            number_of_total_page = int(number_of_total_page_ustr_list[0]
-                                       .split(u'/')[-1])
-            if number_of_total_page < 1:
-                # number_of_total_page的值不合理
-                yield None
-        except IndexError:
-            # 页码提取错误
-            yield None
+        number_of_total_page_ustr_list = \
+            response.css('.page_info').xpath('./text()').extract()
+        number_of_total_page = \
+            int(number_of_total_page_ustr_list[0].split(u'/')[-1])
 
         # 构造填充网页的数据的地址
-        page_number = 1
-        while page_number <= number_of_total_page:
+        for page_number in range(1, number_of_total_page + 1):
             # 产生对网页数据的请求
             yield scrapy.Request(
                 (
@@ -58,7 +47,6 @@ class StockPriceSpider(scrapy.Spider):
                 ).format(page_number),
                 callback=self.parse_stock_data
             )
-            page_number = page_number + 1
 
     def parse_stock_data(self, response):
         '''

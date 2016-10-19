@@ -35,7 +35,7 @@ class InitDB(object):
         '''
         Settings = Config(config_file_name).mysql
         engine = create_engine(
-            'mysql+mysqlconnector://{0}:{1}@{2}:{3}/{4}'
+            'mysql+mysqldb://{0}:{1}@{2}:{3}/{4}?charset=utf8'
                 .format(
                 Settings.user,
                 Settings.password,

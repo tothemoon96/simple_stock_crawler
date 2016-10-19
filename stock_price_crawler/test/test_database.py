@@ -21,7 +21,7 @@ def test_InitDB(mock_declarative_base, mock_sessionmaker, mock_create_engine):
     database_1 = InitDB('test_database.yaml')
     # 测试1：测试的InitDB()正确创建
     # 构造测试数据库的uri
-    test_database_uri = 'mysql+mysqlconnector://root:root@localhost:3306/test_stock_price'
+    test_database_uri = 'mysql+mysqldb://root:root@localhost:3306/test_stock_price?charset=utf8'
     # 检查连接数据库的uri是否正确
     mock_create_engine.assert_called_with(test_database_uri)
     assert_equal(database_1.engine, engine)

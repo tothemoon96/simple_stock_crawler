@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import mock
 import pkg_resources
-from nose.tools import assert_equal
+from nose.tools import assert_equal, assert_raises
 from scrapy.http import Request, TextResponse
 from stock_price_crawler.spiders.stock_price import StockPriceSpider
 
@@ -18,14 +18,13 @@ def fake_response_from_file(file_name, url=None):
     if url is None:
         url = 'http://www.example.com'
     request = Request(url=url)
-    response = None
 
     # 构造fake_response的body，从而构造出一个fake_response
     with open(
-            pkg_resources.resource_filename(
-                'stock_price_crawler.test',
-                file_name
-            ), 'rb'
+        pkg_resources.resource_filename(
+            'stock_price_crawler.test',
+            file_name
+        ), 'rb'
     ) as file:
         response = TextResponse(
             url=url,
@@ -54,8 +53,10 @@ def test_generate_data_item():
     # 预设的由fake_data所生成的fake_item，作为预想item正确的值来和item作比较
     fake_item = dict()
     fake_item['stock_market'] = fake_data['platename']
-    fake_item['stock_market_link'] = '{0}/{1}' \
-        .format('http://q.10jqka.com.cn/stock/thshy', fake_data['hycode'])
+    fake_item['stock_market_link'] = '{0}/{1}'.format(
+        'http://q.10jqka.com.cn/stock/thshy',
+        fake_data['hycode']
+    )
     # 校验item
     assert_equal(fake_item, item, u'生成的item不匹配')
 
@@ -141,7 +142,10 @@ def test_parse():
     fake_response_none = fake_response_from_file(
         'page_number_testcase_none.html'
     )
-    # 获取parse读入response后生成的生成器
-    results = spider.parse(fake_response_none)
-    # 生成器的结果应该为空
-    assert results.next() is None
+
+    def _nested_func():
+        # 获取parse读入response后生成的生成器
+        results = spider.parse(fake_response_none)
+        results.next()
+
+    assert_raises(IndexError, _nested_func)
