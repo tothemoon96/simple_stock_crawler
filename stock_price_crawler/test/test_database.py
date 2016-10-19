@@ -3,12 +3,12 @@ from mock import Mock, patch
 from nose.tools import assert_equal
 from nose.tools import assert_raises
 
-import stock_price_crawler
+from stock_price_crawler.database import InitDB
 
 
-@patch.object(stock_price_crawler.database, 'create_engine')
-@patch.object(stock_price_crawler.database, 'sessionmaker')
-@patch.object(stock_price_crawler.database, 'declarative_base')
+@patch('stock_price_crawler.database.create_engine')
+@patch('stock_price_crawler.database.sessionmaker')
+@patch('stock_price_crawler.database.declarative_base')
 def test_InitDB(mock_declarative_base, mock_sessionmaker, mock_create_engine):
     '''
     测试InitDB
@@ -19,7 +19,6 @@ def test_InitDB(mock_declarative_base, mock_sessionmaker, mock_create_engine):
     '''
     engine = Mock()
     mock_create_engine.return_value = engine
-    from stock_price_crawler.database import InitDB
     database_1 = InitDB('test_database.yaml')
     # 测试1：测试的InitDB()正确创建
     # 构造测试数据库的uri
@@ -31,8 +30,9 @@ def test_InitDB(mock_declarative_base, mock_sessionmaker, mock_create_engine):
     # 检查sessionmaker()调用情况
     mock_sessionmaker.assert_called_with(bind=engine)
     mock_create_engine.assert_called()
-    # # declarative_base()调用情况，有点问题
-    # mock_declarative_base.assert_called()
+    # declarative_base()调用情况，有点问题
+    print database_1.Session
+    mock_declarative_base.assert_called()
 
     # 测试2检查单例模式是否成功构造
     database_2 = InitDB('test_database.yaml')
