@@ -10,6 +10,10 @@ from stock_price_crawler.models.data import ItemTable
 
 class TestData(unittest.TestCase):
     def setUp(self):
+        '''
+        连接测试数据库
+        :return:
+        '''
         self.database = InitDB('test_database.yaml')
         InitDB.Base.metadata.create_all(self.database.engine)
         with DBSession(self.database.Session) as session:
@@ -19,6 +23,10 @@ class TestData(unittest.TestCase):
             map(session.delete, results)
 
     def tearDown(self):
+        '''
+        清除测试数据
+        :return:
+        '''
         with DBSession(self.database.Session) as session:
             results = session.query(
                 ItemTable
@@ -60,5 +68,3 @@ class TestData(unittest.TestCase):
                 if key == 'scrape_time':
                     real_value = real_value.strftime("%Y-%m-%d %H:%M:%S")
                 assert_equal(real_value, value)
-
-         # 测试3：无法mock产生异常的情况?

@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import logging
-from sqlalchemy import Column
-from sqlalchemy import DateTime
-from sqlalchemy import String
+from sqlalchemy import Column, DateTime, String
 from sqlalchemy.exc import IntegrityError
 from stock_price_crawler.database import InitDB, DBSession
 
@@ -41,5 +39,6 @@ class ItemTable(InitDB.Base):
                     session.delete(record)
                     session.add(self)
                     session.flush()
+                # 如果是其他的问题，就把异常继续向上抛
                 else:
                     raise

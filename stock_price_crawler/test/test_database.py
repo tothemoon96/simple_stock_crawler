@@ -2,7 +2,6 @@
 from mock import Mock, patch
 from nose.tools import assert_equal
 from nose.tools import assert_raises
-
 from stock_price_crawler.database import InitDB
 
 
@@ -31,7 +30,7 @@ def test_InitDB(mock_declarative_base, mock_sessionmaker, mock_create_engine):
     mock_sessionmaker.assert_called_with(bind=engine)
     mock_create_engine.assert_called()
     # declarative_base()调用情况，有点问题
-    print database_1.Session
+    print InitDB.Base
     mock_declarative_base.assert_called()
 
     # 测试2检查单例模式是否成功构造

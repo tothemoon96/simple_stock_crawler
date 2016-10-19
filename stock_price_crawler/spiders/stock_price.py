@@ -58,7 +58,7 @@ class StockPriceSpider(scrapy.Spider):
                 ).format(page_number),
                 callback=self.parse_stock_data
             )
-            page_number = page_number+1
+            page_number = page_number + 1
 
     def parse_stock_data(self, response):
         '''
