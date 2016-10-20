@@ -54,12 +54,32 @@ class TestData(unittest.TestCase):
 
         # 测试2：测试update主键，验证数据是否被更新
         value_dict = {
-            'stock_market': 'update',
+            'stock_market': 'insert&update',
             'stock_market_link': 'test1',
             'scrape_time': time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         }
         obj = ItemTable(database=self.database, **value_dict)
         obj.insert()
+        with DBSession(self.database.Session) as session:
+            results = session.query(
+                ItemTable
+            ).filter(ItemTable.stock_market == 'insert&update').all()
+            assert_equal(len(results), 1)
+            result = results.pop()
+            for key, value in value_dict.iteritems():
+                real_value = getattr(result, key)
+                if key == 'scrape_time':
+                    real_value = real_value.strftime("%Y-%m-%d %H:%M:%S")
+                assert_equal(real_value, value)
+
+    def test_update(self):
+        value_dict = {
+            'stock_market': 'update',
+            'stock_market_link': 'test1',
+            'scrape_time': time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+        }
+        obj = ItemTable(database=self.database, **value_dict)
+        obj.update()
         with DBSession(self.database.Session) as session:
             results = session.query(
                 ItemTable
