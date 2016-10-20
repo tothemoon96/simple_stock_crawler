@@ -24,13 +24,15 @@ class ItemTable(InitDB.Base):
         self.database = database
 
     def __repr__(self):
-        return \
-            u"<ItemTable(stock_market='{0}',stock_market_link='{1}',scrape_time=='{2}')>" \
-                .format(
-                self.stock_market,
-                self.stock_market_link,
-                self.scrape_time
-            )
+        return (
+            u"<ItemTable(stock_market='{0}',"
+            u"stock_market_link='{1}',"
+            u"scrape_time=='{2}')>"
+        ).format(
+            self.stock_market,
+            self.stock_market_link,
+            self.scrape_time
+        )
 
     def insert(self):
         '''
@@ -60,7 +62,8 @@ class ItemTable(InitDB.Base):
         with DBSession(self.database.Session) as session:
             mapped_values = {}
             for field_name, field_type in ItemTable.__dict__.iteritems():
-                is_column = isinstance(field_type, InstrumentedAttribute)
-                if is_column:
+                if isinstance(field_type, InstrumentedAttribute):
                     mapped_values[field_name] = getattr(self, field_name)
-            session.query(ItemTable).filter(ItemTable.stock_market == self.stock_market).update(mapped_values)
+            session.query(ItemTable).filter(
+                ItemTable.stock_market == self.stock_market
+            ).update(mapped_values)
