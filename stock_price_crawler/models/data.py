@@ -36,23 +36,28 @@ class ItemTable(InitDB.Base):
 
     def insert(self):
         '''
-        插入数据，如果数据存在就更新
+        插入数据
         :return:
         '''
         with DBSession(self.database.Session) as session:
-            try:
-                session.add(self)
-                session.flush()
-            except IntegrityError, e:
-                logger.info(e.message)
-                # 如果该主键值已经存在，就更新该数据
-                if 'Duplicate' in e.message:
-                    session.rollback()
-                    logger.info('Records exists')
-                    self.update()
-                # 如果是其他的问题，就把异常继续向上抛
-                else:
-                    raise e
+            session.add(self)
+
+    def insert_with_update(self):
+        '''
+        插入数据，如果数据存在就更新
+        :return:
+        '''
+        try:
+            self.insert()
+        except IntegrityError, e:
+            logger.info(e.message)
+            # 如果该主键值已经存在，就更新该数据
+            if 'Duplicate' in e.message:
+                logger.info('Records exists')
+                self.update()
+            # 如果是其他的问题，就把异常继续向上抛
+            else:
+                raise e
 
     def update(self):
         '''

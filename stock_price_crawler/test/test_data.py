@@ -39,7 +39,7 @@ class TestData(unittest.TestCase):
         }
         obj = ItemTable(database=self.database, **value_dict)
         obj.insert()
-        # 测试1：插入之后再取出数据，验证数据项的个数和内容是否一致
+        # 插入之后再取出数据，验证数据项的个数和内容是否一致
         with DBSession(self.database.Session) as session:
             results = session.query(
                 ItemTable
@@ -52,14 +52,15 @@ class TestData(unittest.TestCase):
                     real_value = real_value.strftime("%Y-%m-%d %H:%M:%S")
                 assert_equal(real_value, value)
 
-        # 测试2：测试update主键，验证数据是否被更新
+    def test_insert_with_update(self):
+        # 测试insert&update主键，验证数据是否被更新
         value_dict = {
             'stock_market': 'insert&update',
             'stock_market_link': 'test1',
             'scrape_time': time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         }
         obj = ItemTable(database=self.database, **value_dict)
-        obj.insert()
+        obj.insert_with_update()
         with DBSession(self.database.Session) as session:
             results = session.query(
                 ItemTable

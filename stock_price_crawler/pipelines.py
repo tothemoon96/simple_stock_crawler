@@ -18,5 +18,5 @@ class StockPriceCrawlerPipeline(object):
             scrape_time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
             database=database
         )
-        ItemTable.insert(data)
+        data.insert_with_update()
         return item
