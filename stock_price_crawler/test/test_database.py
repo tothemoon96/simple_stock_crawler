@@ -1,14 +1,17 @@
 # -*- coding: utf-8 -*-
+import logging
 from mock import Mock, patch
-from nose.tools import assert_equal
-from nose.tools import assert_raises
+from nose.tools import assert_equal, assert_raises
+from sqlalchemy.ext.declarative import DeclarativeMeta
+from stock_price_crawler.config import Config
 from stock_price_crawler.database import InitDB
+
+logger = logging.getLogger(__name__)
 
 
 @patch('stock_price_crawler.database.create_engine')
 @patch('stock_price_crawler.database.sessionmaker')
-@patch('stock_price_crawler.database.declarative_base')
-def test_InitDB(mock_declarative_base, mock_sessionmaker, mock_create_engine):
+def test_InitDB(mock_sessionmaker, mock_create_engine):
     '''
     测试InitDB
     :param mock_declarative_base: declarative_base()
@@ -21,7 +24,15 @@ def test_InitDB(mock_declarative_base, mock_sessionmaker, mock_create_engine):
     database_1 = InitDB('test_database.yaml')
     # 测试1：测试的InitDB()正确创建
     # 构造测试数据库的uri
-    test_database_uri = 'mysql+mysqldb://root:root@localhost:3306/test_stock_price?charset=utf8'
+    Settings = Config('test_database.yaml').mysql
+    test_database_uri = \
+        'mysql+mysqldb://{0}:{1}@{2}:{3}/{4}?charset=utf8'.format(
+            Settings.user,
+            Settings.password,
+            Settings.host,
+            Settings.port,
+            Settings.database
+        )
     # 检查连接数据库的uri是否正确
     mock_create_engine.assert_called_with(test_database_uri)
     assert_equal(database_1.engine, engine)
@@ -29,9 +40,8 @@ def test_InitDB(mock_declarative_base, mock_sessionmaker, mock_create_engine):
     # 检查sessionmaker()调用情况
     mock_sessionmaker.assert_called_with(bind=engine)
     mock_create_engine.assert_called()
-    # declarative_base()调用情况，有点问题
-    print InitDB.Base
-    mock_declarative_base.assert_called()
+    logger.debug(type(InitDB.Base))
+    assert isinstance(InitDB.Base, DeclarativeMeta)
 
     # 测试2检查单例模式是否成功构造
     database_2 = InitDB('test_database.yaml')

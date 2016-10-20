@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
-
-from mock import Mock
+import time
 from nose.tools import assert_equal
-
 from stock_price_crawler.database import InitDB, DBSession
 from stock_price_crawler.models.data import ItemTable
 
@@ -41,7 +39,7 @@ class TestData(unittest.TestCase):
         }
         obj = ItemTable(database=self.database, **value_dict)
         obj.insert()
-        # 测试1：插入之后再取出数据，验证数据项的个位和内容是否一致
+        # 测试1：插入之后再取出数据，验证数据项的个数和内容是否一致
         with DBSession(self.database.Session) as session:
             results = session.query(
                 ItemTable
@@ -53,14 +51,19 @@ class TestData(unittest.TestCase):
                 if key == 'scrape_time':
                     real_value = real_value.strftime("%Y-%m-%d %H:%M:%S")
                 assert_equal(real_value, value)
-        # 测试2：主键stock_market没变，验证数据是否被更新
-        value_dict['stock_market_link'] = 'test2'
+
+        # 测试2：测试update主键，验证数据是否被更新
+        value_dict = {
+            'stock_market': 'update',
+            'stock_market_link': 'test1',
+            'scrape_time': time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+        }
         obj = ItemTable(database=self.database, **value_dict)
         obj.insert()
         with DBSession(self.database.Session) as session:
             results = session.query(
                 ItemTable
-            ).filter(ItemTable.stock_market == 'insert').all()
+            ).filter(ItemTable.stock_market == 'update').all()
             assert_equal(len(results), 1)
             result = results.pop()
             for key, value in value_dict.iteritems():

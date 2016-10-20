@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from nose.tools import assert_equals
 from scrapy.loader import ItemLoader
-
 from stock_price_crawler.items import StockPriceCrawlerItem
 
 
