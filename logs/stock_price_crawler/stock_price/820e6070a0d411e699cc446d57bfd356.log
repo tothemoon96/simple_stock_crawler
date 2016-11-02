@@ -1,0 +1,391 @@
+2016-11-02 16:15:28 [scrapy] INFO: Scrapy 1.2.1 started (bot: stock_price_crawler)
+2016-11-02 16:15:28 [scrapy] INFO: Overridden settings: {'NEWSPIDER_MODULE': 'stock_price_crawler.spiders', 'ROBOTSTXT_OBEY': True, 'SPIDER_MODULES': ['stock_price_crawler.spiders'], 'BOT_NAME': 'stock_price_crawler', 'FEED_URI': 'file:///C:/Users/hanwe/Desktop/Project/Python/stock_price_crawler/items/stock_price_crawler/stock_price/820e6070a0d411e699cc446d57bfd356.jl', 'LOG_FILE': 'logs\\stock_price_crawler\\stock_price\\820e6070a0d411e699cc446d57bfd356.log'}
+2016-11-02 16:15:28 [scrapy] INFO: Enabled extensions:
+['scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.corestats.CoreStats']
+2016-11-02 16:15:28 [scrapy] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.chunked.ChunkedTransferMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2016-11-02 16:15:28 [scrapy] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2016-11-02 16:15:28 [scrapy] INFO: Enabled item pipelines:
+['stock_price_crawler.pipelines.StockPriceCrawlerPipeline']
+2016-11-02 16:15:28 [scrapy] INFO: Spider opened
+2016-11-02 16:15:28 [scrapy] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2016-11-02 16:15:28 [scrapy] DEBUG: Telnet console listening on 127.0.0.1:6023
+2016-11-02 16:15:28 [scrapy] DEBUG: Crawled (200) <GET http://q.10jqka.com.cn/robots.txt> (referer: None)
+2016-11-02 16:15:29 [scrapy] DEBUG: Crawled (200) <GET http://q.10jqka.com.cn/stock/thshy/> (referer: None)
+2016-11-02 16:15:29 [scrapy] DEBUG: Crawled (200) <GET http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote> (referer: http://q.10jqka.com.cn/stock/thshy/)
+2016-11-02 16:15:29 [scrapy] DEBUG: Crawled (200) <GET http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/2/quote/quote> (referer: http://q.10jqka.com.cn/stock/thshy/)
+2016-11-02 16:15:29 [py.warnings] WARNING: C:\Python27\lib\site-packages\sqlalchemy\engine\default.py:462: Warning: Incorrect string value: '\xD6\xD0\xB9\xFA\xB1\xEA...' for column 'VARIABLE_VALUE' at row 479
+  cursor.execute(statement, parameters)
+
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe6\x9c\x89\xe8\x89\xb2\xe5\x86\xb6\xe7\x82\xbc\xe5\x8a\xa0\xe5\xb7\xa5' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u6709\u8272\u51b6\u70bc\u52a0\u5de5',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/ysyljg'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe5\xae\xb6\xe7\x94\xa8\xe8\xbd\xbb\xe5\xb7\xa5' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u5bb6\u7528\u8f7b\u5de5',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/jyqg'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe5\x85\xbb\xe6\xae\x96\xe4\xb8\x9a' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/2/quote/quote>
+{'stock_market': u'\u517b\u6b96\u4e1a',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/yzy'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe5\x8c\xbb\xe8\x8d\xaf\xe5\x95\x86\xe4\xb8\x9a' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u533b\u836f\u5546\u4e1a',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/yysy'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe7\x94\xb5\xe5\x8a\x9b' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/2/quote/quote>
+{'stock_market': u'\u7535\u529b',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/dl'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe7\x94\x9f\xe7\x89\xa9\xe5\x88\xb6\xe5\x93\x81' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u751f\u7269\u5236\u54c1',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/swzp'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe5\x8c\x96\xe5\xb7\xa5\xe5\x90\x88\xe6\x88\x90\xe6\x9d\x90\xe6\x96\x99' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/2/quote/quote>
+{'stock_market': u'\u5316\u5de5\u5408\u6210\u6750\u6599',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/hghccl'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe7\x94\xb5\xe5\xad\x90\xe5\x88\xb6\xe9\x80\xa0' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u7535\u5b50\u5236\u9020',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/dzzz'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe8\xae\xa1\xe7\xae\x97\xe6\x9c\xba\xe5\xba\x94\xe7\x94\xa8' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/2/quote/quote>
+{'stock_market': u'\u8ba1\u7b97\u673a\u5e94\u7528',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/jsjyy'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe6\xb1\xbd\xe8\xbd\xa6\xe9\x9b\xb6\xe9\x83\xa8\xe4\xbb\xb6' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u6c7d\u8f66\u96f6\u90e8\u4ef6',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/qclbj'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe9\x92\xa2\xe9\x93\x81' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/2/quote/quote>
+{'stock_market': u'\u94a2\u94c1',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/gt'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe9\x9b\xb6\xe5\x94\xae' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u96f6\u552e',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/ls'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe9\x85\x92\xe5\xba\x97\xe5\x8f\x8a\xe9\xa4\x90\xe9\xa5\xae' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/2/quote/quote>
+{'stock_market': u'\u9152\u5e97\u53ca\u9910\u996e',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/jdjcy'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe4\xb8\x93\xe7\x94\xa8\xe8\xae\xbe\xe5\xa4\x87' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u4e13\u7528\u8bbe\u5907',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/zysb'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe9\x80\x9a\xe4\xbf\xa1\xe8\xae\xbe\xe5\xa4\x87' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/2/quote/quote>
+{'stock_market': u'\u901a\u4fe1\u8bbe\u5907',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/txsb'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe5\x8c\x96\xe5\xad\xa6\xe5\x88\xb6\xe5\x93\x81' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u5316\u5b66\u5236\u54c1',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/hxzp'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe6\xb8\xaf\xe5\x8f\xa3\xe8\x88\xaa\xe8\xbf\x90' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/2/quote/quote>
+{'stock_market': u'\u6e2f\u53e3\u822a\u8fd0',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/gkhy'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe5\x85\xac\xe4\xba\xa4' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u516c\u4ea4',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/gj'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe8\xae\xa1\xe7\xae\x97\xe6\x9c\xba\xe8\xae\xbe\xe5\xa4\x87' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/2/quote/quote>
+{'stock_market': u'\u8ba1\u7b97\u673a\u8bbe\u5907',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/jsjsb'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe5\xbb\xba\xe7\xad\x91\xe6\x9d\x90\xe6\x96\x99' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u5efa\u7b51\u6750\u6599',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/jzcl'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe9\xa5\xae\xe6\x96\x99\xe5\x88\xb6\xe9\x80\xa0' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/2/quote/quote>
+{'stock_market': u'\u996e\u6599\u5236\u9020',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/ylzz'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe7\x89\xa9\xe6\xb5\x81' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u7269\u6d41',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/wl'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe9\x87\x87\xe6\x8e\x98\xe6\x9c\x8d\xe5\x8a\xa1' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/2/quote/quote>
+{'stock_market': u'\u91c7\u6398\u670d\u52a1',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/cjfw'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe7\xbb\xbc\xe5\x90\x88' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u7efc\u5408',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/zh'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe4\xba\xa4\xe8\xbf\x90\xe8\xae\xbe\xe5\xa4\x87\xe6\x9c\x8d\xe5\x8a\xa1' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/2/quote/quote>
+{'stock_market': u'\u4ea4\u8fd0\u8bbe\u5907\u670d\u52a1',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/jysbfw'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe9\x9d\x9e\xe6\xb1\xbd\xe8\xbd\xa6\xe4\xba\xa4\xe8\xbf\x90' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u975e\u6c7d\u8f66\u4ea4\u8fd0',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/fqcjy'}
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe5\xbb\xba\xe7\xad\x91\xe8\xa3\x85\xe9\xa5\xb0' for key 'PRIMARY'")
+2016-11-02 16:15:29 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:29 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/2/quote/quote>
+{'stock_market': u'\u5efa\u7b51\u88c5\u9970',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/jzzs'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe5\x8d\x8a\xe5\xaf\xbc\xe4\xbd\x93\xe5\x8f\x8a\xe5\x85\x83\xe4\xbb\xb6' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u534a\u5bfc\u4f53\u53ca\u5143\u4ef6',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/bdtjyj'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe7\x85\xa4\xe7\x82\xad\xe5\xbc\x80\xe9\x87\x87' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/2/quote/quote>
+{'stock_market': u'\u7164\u70ad\u5f00\u91c7',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/mtkc'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe5\x86\x9c\xe4\xba\xa7\xe5\x93\x81\xe5\x8a\xa0\xe5\xb7\xa5' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u519c\u4ea7\u54c1\u52a0\u5de5',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/ncpjg'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe7\x8e\xaf\xe4\xbf\x9d\xe5\xb7\xa5\xe7\xa8\x8b' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/2/quote/quote>
+{'stock_market': u'\u73af\u4fdd\u5de5\u7a0b',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/hbgc'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe5\x86\x9c\xe4\xb8\x9a\xe6\x9c\x8d\xe5\x8a\xa1' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u519c\u4e1a\u670d\u52a1',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/nyfw'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe7\x9f\xb3\xe6\xb2\xb9\xe7\x9f\xbf\xe4\xb8\x9a\xe5\xbc\x80\xe9\x87\x87' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/2/quote/quote>
+{'stock_market': u'\u77f3\u6cb9\u77ff\u4e1a\u5f00\u91c7',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/sykykc'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe4\xb8\xad\xe8\x8d\xaf' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u4e2d\u836f',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/zy'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe9\x80\x9a\xe4\xbf\xa1\xe6\x9c\x8d\xe5\x8a\xa1' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u901a\u4fe1\u670d\u52a1',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/txfw'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe5\x8c\x96\xe5\xb7\xa5\xe6\x96\xb0\xe6\x9d\x90\xe6\x96\x99' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u5316\u5de5\u65b0\u6750\u6599',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/hgxcl'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe5\x8c\x96\xe5\xad\xa6\xe5\x88\xb6\xe8\x8d\xaf' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u5316\u5b66\u5236\u836f',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/hxzy'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe4\xbc\xa0\xe5\xaa\x92' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u4f20\u5a92',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/cm'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe8\xaf\x81\xe5\x88\xb8' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u8bc1\u5238',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/zq'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe5\x85\x89\xe5\xad\xa6\xe5\x85\x89\xe7\x94\xb5\xe5\xad\x90' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u5149\u5b66\u5149\u7535\u5b50',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/gxgdz'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe9\xa3\x9f\xe5\x93\x81\xe5\x8a\xa0\xe5\xb7\xa5\xe5\x88\xb6\xe9\x80\xa0' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u98df\u54c1\u52a0\u5de5\u5236\u9020',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/spjgzz'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe7\xba\xba\xe7\xbb\x87\xe5\x88\xb6\xe9\x80\xa0' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u7eba\u7ec7\u5236\u9020',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/fzzz'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe6\x9c\xba\xe5\x9c\xba\xe8\x88\xaa\xe8\xbf\x90' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u673a\u573a\u822a\u8fd0',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/jchy'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe4\xbf\x9d\xe9\x99\xa9\xe5\x8f\x8a\xe5\x85\xb6\xe4\xbb\x96' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u4fdd\u9669\u53ca\u5176\u4ed6',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/bxjqt'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe4\xbb\xaa\xe5\x99\xa8\xe4\xbb\xaa\xe8\xa1\xa8' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u4eea\u5668\u4eea\u8868',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/yqyb'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe9\x80\x9a\xe7\x94\xa8\xe8\xae\xbe\xe5\xa4\x87' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u901a\u7528\u8bbe\u5907',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/tysb'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe5\x85\xac\xe8\xb7\xaf\xe9\x93\x81\xe8\xb7\xaf\xe8\xbf\x90\xe8\xbe\x93' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u516c\u8def\u94c1\u8def\u8fd0\u8f93',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/gltlys'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe5\x8c\x85\xe8\xa3\x85\xe5\x8d\xb0\xe5\x88\xb7' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u5305\u88c5\u5370\u5237',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/bzys'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe9\x80\xa0\xe7\xba\xb8' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u9020\u7eb8',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/zz'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe6\x88\xbf\xe5\x9c\xb0\xe4\xba\xa7\xe5\xbc\x80\xe5\x8f\x91' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u623f\u5730\u4ea7\u5f00\u53d1',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/fdckf'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe5\x9f\xba\xe7\xa1\x80\xe5\x8c\x96\xe5\xad\xa6' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u57fa\u7840\u5316\u5b66',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/jchx'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe6\x9c\x8d\xe8\xa3\x85\xe5\xae\xb6\xe7\xba\xba' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u670d\u88c5\u5bb6\u7eba',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/fzjf'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe6\x96\xb0\xe6\x9d\x90\xe6\x96\x99' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u65b0\u6750\u6599',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/xcl'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe7\x87\x83\xe6\xb0\x94\xe6\xb0\xb4\xe5\x8a\xa1' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u71c3\u6c14\u6c34\u52a1',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/rqsw'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe9\x93\xb6\xe8\xa1\x8c' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u94f6\u884c',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/yx'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe7\xa7\x8d\xe6\xa4\x8d\xe4\xb8\x9a\xe4\xb8\x8e\xe6\x9e\x97\xe4\xb8\x9a' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u79cd\u690d\u4e1a\u4e0e\u6797\u4e1a',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/zzyyly'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe5\x9b\xad\xe5\x8c\xba\xe5\xbc\x80\xe5\x8f\x91' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u56ed\u533a\u5f00\u53d1',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/yqkf'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe6\x99\xaf\xe7\x82\xb9\xe5\x8f\x8a\xe6\x97\x85\xe6\xb8\xb8' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u666f\u70b9\u53ca\u65c5\u6e38',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/jdjly'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe8\xb4\xb8\xe6\x98\x93' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u8d38\u6613',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/my'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe6\xb1\xbd\xe8\xbd\xa6\xe6\x95\xb4\xe8\xbd\xa6' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u6c7d\u8f66\u6574\u8f66',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/qczc'}
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe8\xa7\x86\xe5\x90\xac\xe5\x99\xa8\xe6\x9d\x90' for key 'PRIMARY'")
+2016-11-02 16:15:30 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:30 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u89c6\u542c\u5668\u6750',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/stqc'}
+2016-11-02 16:15:31 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe5\x9b\xbd\xe9\x98\xb2\xe5\x86\x9b\xe5\xb7\xa5' for key 'PRIMARY'")
+2016-11-02 16:15:31 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:31 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u56fd\u9632\u519b\u5de5',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/gfjg'}
+2016-11-02 16:15:31 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe7\x94\xb5\xe6\xb0\x94\xe8\xae\xbe\xe5\xa4\x87' for key 'PRIMARY'")
+2016-11-02 16:15:31 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:31 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u7535\u6c14\u8bbe\u5907',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/dqsb'}
+2016-11-02 16:15:31 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe7\x99\xbd\xe8\x89\xb2\xe5\xae\xb6\xe7\x94\xb5' for key 'PRIMARY'")
+2016-11-02 16:15:31 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:31 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u767d\u8272\u5bb6\u7535',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/bsjd'}
+2016-11-02 16:15:31 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe5\x8c\xbb\xe7\x96\x97\xe5\x99\xa8\xe6\xa2\xb0\xe6\x9c\x8d\xe5\x8a\xa1' for key 'PRIMARY'")
+2016-11-02 16:15:31 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:31 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u533b\u7597\u5668\u68b0\u670d\u52a1',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/ylqxfw'}
+2016-11-02 16:15:31 [stock_price_crawler.models.data] INFO: (_mysql_exceptions.IntegrityError) (1062, "Duplicate entry '\xe5\x85\xb6\xe4\xbb\x96\xe7\x94\xb5\xe5\xad\x90' for key 'PRIMARY'")
+2016-11-02 16:15:31 [stock_price_crawler.models.data] INFO: Records exists
+2016-11-02 16:15:31 [scrapy] DEBUG: Scraped from <200 http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/1/quote/quote>
+{'stock_market': u'\u5176\u4ed6\u7535\u5b50',
+ 'stock_market_link': 'http://q.10jqka.com.cn/stock/thshy/qtdz'}
+2016-11-02 16:15:31 [scrapy] INFO: Closing spider (finished)
+2016-11-02 16:15:31 [scrapy] INFO: Stored jsonlines feed (66 items) in: file:///C:/Users/hanwe/Desktop/Project/Python/stock_price_crawler/items/stock_price_crawler/stock_price/820e6070a0d411e699cc446d57bfd356.jl
+2016-11-02 16:15:31 [scrapy] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 1322,
+ 'downloader/request_count': 4,
+ 'downloader/request_method_count/GET': 4,
+ 'downloader/response_bytes': 25127,
+ 'downloader/response_count': 4,
+ 'downloader/response_status_count/200': 4,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2016, 11, 2, 8, 15, 31, 123000),
+ 'item_scraped_count': 66,
+ 'log_count/DEBUG': 71,
+ 'log_count/INFO': 140,
+ 'log_count/WARNING': 1,
+ 'request_depth_max': 1,
+ 'response_received_count': 4,
+ 'scheduler/dequeued': 3,
+ 'scheduler/dequeued/memory': 3,
+ 'scheduler/enqueued': 3,
+ 'scheduler/enqueued/memory': 3,
+ 'start_time': datetime.datetime(2016, 11, 2, 8, 15, 28, 880000)}
+2016-11-02 16:15:31 [scrapy] INFO: Spider closed (finished)

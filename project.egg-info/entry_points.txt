@@ -1,0 +1,3 @@
+[scrapy]
+settings = stock_price_crawler.settings
+
