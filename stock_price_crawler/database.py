@@ -36,7 +36,7 @@ class InitDB(object):
         Settings = Config(config_file_name).mysql
         engine = create_engine(
             'mysql+mysqldb://{0}:{1}@{2}:{3}/{4}?charset=utf8'
-                .format(
+            .format(
                 Settings.user,
                 Settings.password,
                 Settings.host,
@@ -47,6 +47,7 @@ class InitDB(object):
         return engine
 
 
+# 下次再设计的时候还是把_database封装到DBSession中
 _database = InitDB('config.yaml')
 
 
