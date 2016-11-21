@@ -3,6 +3,8 @@ import logging
 from mock import Mock, patch, PropertyMock
 from nose.tools import assert_equal, assert_raises
 from sqlalchemy.ext.declarative import DeclarativeMeta
+
+from stock_price_crawler import database
 from stock_price_crawler.database import InitDB
 
 logger = logging.getLogger(__name__)
@@ -52,9 +54,12 @@ def test_InitDB(mock_Config, mock_sessionmaker, mock_create_engine):
     logger.debug(type(InitDB.Base))
     assert isinstance(InitDB.Base, DeclarativeMeta)
 
-    # 测试2检查单例模式是否成功构造
+    # 测试2：检查单例模式是否成功构造
     database_2 = InitDB('test_database.yaml')
     assert_equal(database_1, database_2)
+
+    # 测试3：检查_database的类型
+    assert isinstance(database._database, InitDB)
 
 
 def test_DBSession():
