@@ -139,3 +139,9 @@ fabric.properties
 
 #PyCharm
 .idea
+
+#scrapyd
+items
+logs
+dbs
+post_example.xml

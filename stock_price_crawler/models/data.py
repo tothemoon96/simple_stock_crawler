@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 class ItemTable(InitDB.Base):
     '''
-        表item_table的持久化对象
+    表item_table的持久化对象
     '''
     __tablename__ = 'item_table'
     stock_market = Column('stock_market', String(255), primary_key=True)
@@ -27,7 +27,7 @@ class ItemTable(InitDB.Base):
         return (
             u"<ItemTable(stock_market='{0}',"
             u"stock_market_link='{1}',"
-            u"scrape_time=='{2}')>"
+            u"scrape_time='{2}')>"
         ).format(
             self.stock_market,
             self.stock_market_link,

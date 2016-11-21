@@ -47,9 +47,12 @@ class InitDB(object):
         return engine
 
 
+_database = InitDB('config.yaml')
+
+
 class DBSession(object):
     '''
-        封装Session类为更友好的with模式
+    封装Session类为更友好的with模式
     '''
 
     def __init__(self, Session):

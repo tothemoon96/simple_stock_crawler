@@ -11,7 +11,7 @@ import pkg_resources
 
 class ObjectNotDictError(Exception):
     '''
-        异常类，当 ``ClassAsDict`` 的初始化参数非字典类型时抛出
+    异常类，当 ``ClassAsDict`` 的初始化参数非字典类型时抛出
     '''
     def __init__(self, dic):
         self.dic = dic
@@ -24,7 +24,7 @@ class ObjectNotDictError(Exception):
 
 class DictAsClass(object):
     '''
-        特殊字典类，实现了按属性取字典键值
+    特殊字典类，实现了按属性取字典键值
     '''
     def __init__(self, dic):
         # 要求传入类型为字典
@@ -48,7 +48,7 @@ class DictAsClass(object):
 
 class Config(DictAsClass):
     '''
-        配置文件类
+    配置文件类
     '''
     def __init__(self, filename):
         with open(
