@@ -3,7 +3,8 @@ import logging
 import os
 import socket
 from scrapy import signals
-from stock_price_crawler.models.crawler_stock_price_data import CrawlerStockPriceDataTable
+from stock_price_crawler.models.crawler_stock_price_data \
+    import CrawlerStockPriceDataTable
 from stock_price_crawler.models.instance import InstanceTable
 
 logger = logging.getLogger(__name__)
@@ -49,7 +50,9 @@ class StockPriceExtension(object):
                 start_time=self.stats.get_value('start_time'),
                 finish_time=self.stats.get_value('finish_time'),
                 item_scraped_count=self.stats.get_value('item_scraped_count'),
-                log_count_warning_count=self.stats.get_value('log_count/WARNING')
+                log_count_warning_count=self.stats.get_value(
+                    'log_count/WARNING'
+                )
             )
         )
 

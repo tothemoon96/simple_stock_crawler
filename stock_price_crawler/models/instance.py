@@ -19,7 +19,7 @@ class InstanceTable(InitDB.Base):
     status = Column('status', String(255))
     module = Column('module', String(255))
     service = Column('service', String(255))
-    
+
     _database = InitDB('config.yaml')
 
     def __repr__(self):
