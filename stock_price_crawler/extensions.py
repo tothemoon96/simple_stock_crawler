@@ -6,6 +6,7 @@ from scrapy import signals
 from stock_price_crawler.models.crawler_stock_price_data \
     import CrawlerStockPriceDataTable
 from stock_price_crawler.models.instance import InstanceTable
+from stock_price_crawler.time_util import convert_utc_time_to_local_time
 
 logger = logging.getLogger(__name__)
 
@@ -44,11 +45,19 @@ class StockPriceExtension(object):
         :param reason:关闭原因
         :return:
         '''
+        start_time = convert_utc_time_to_local_time(
+            self.stats.get_value('start_time')
+        )
+        finish_time = convert_utc_time_to_local_time(
+            self.stats.get_value('finish_time')
+        )
+        self.stats.set_value('start_time', start_time)
+        self.stats.set_value('finish_time', finish_time)
         CrawlerStockPriceDataTable.insert(
             CrawlerStockPriceDataTable(
                 instance_id=spider.instance_id,
-                start_time=self.stats.get_value('start_time'),
-                finish_time=self.stats.get_value('finish_time'),
+                start_time=start_time.strftime("%Y-%m-%d %H:%M:%S"),
+                finish_time=finish_time.strftime("%Y-%m-%d %H:%M:%S"),
                 item_scraped_count=self.stats.get_value('item_scraped_count'),
                 log_count_warning_count=self.stats.get_value(
                     'log_count/WARNING'

@@ -141,7 +141,7 @@ fabric.properties
 .idea
 
 #scrapyd
-items
-logs
-dbs
+items/
+logs/
+dbs/
 post_example.xml
